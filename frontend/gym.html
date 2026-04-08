@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+      <title>Iron Fitness</title>
+      <link rel="stylesheet" href="gym.css">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="script.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+      <style>
+         html{
+         scroll-behavior:smooth;
+         }
+      </style>
+   </head>
+   <body>
+      <nav class="navbar">
+         <div class="logo">IRON FITNESS</div>
+         <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+               Resources
+               </a>
+               <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="Resources/bodyFatCaluclator.html">Body Fat Calculator</a></li>
+                  <li><a class="dropdown-item" href="Resources/bodyMassIndexCalculator.html">BMI Calculator</a></li>
+                  <li><a class="dropdown-item" href="Resources/proteinIntakeCalculator.html">Protein Intake Calculator</a></li>
+                  <li><a class="dropdown-item" href="Resources/waterIntakeCalculator.html">Water Intake Calculator</a></li>
+               </ul>
+            </li>
+            <li><a href="#ourteam">Our Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <a href="http://localhost:8080/index.html" class="admin-btn">Admin Login</a>
+         </ul>
+      </nav>
+      <section id="home">
+         <h1 class="title"><u>FIGHT FOR FITNESS</u></h1>
+         <h5 class="subtitle">STAY FOCUS STAY SAFE</h5>
+         <div class="image-row">
+            <div class="img-card">
+               <img src="images/discipline.jpg" alt="">
+            </div>
+            <div class="img-card">
+               <img src="images/dominate.jpg" alt="">
+            </div>
+            <div class="img-card">
+               <img src="images/focus.jpg" alt="">
+            </div>
+         </div>
+         <h3 class="presubtitle">
+            STRENGTH <span style="color:red;">GROWS</span> WHERE EXCUSES DIE !
+         </h3>
+      </section>
+      <section id="about">
+         <h1 class="about-title">
+            ABOUT <span style="color:red;">IRON</span> FITNESS
+         </h1>
+         <p class="about-text">
+            Iron Fitness is built for people who want to become stronger,
+            healthier and more disciplined. We provide a motivating
+            environment with modern equipment and expert trainers
+            to help you achieve your fitness goals.
+         </p>
+         <div class="about-features">
+            <div class="feature-card">
+               <h3>Modern Equipment</h3>
+               <p>High quality strength and cardio equipment.</p>
+            </div>
+            <div class="feature-card">
+               <h3>Personal Training</h3>
+               <p>One-on-one coaching with certified trainers to maximize your results.</p>
+            </div>
+            <div class="feature-card">
+               <h3>Nutrition Guidance</h3>
+               <p>Customized diet plans to support your fitness and strength goals.</p>
+            </div>
+            <div class="feature-card">
+               <h3>Expert Trainers</h3>
+               <p>Certified trainers to guide your transformation.</p>
+            </div>
+            <div class="feature-card">
+               <h3>Group Training</h3>
+               <p>High-energy group workouts that keep you motivated and consistent.</p>
+            </div>
+            <div class="feature-card">
+               <h3>Body Transformation</h3>
+               <p>Structured programs designed to help you lose fat and build muscle.</p>
+            </div>
+         </div>
+      </section>
+      <section id="services">
+         <h1 class="services-title" style="color: white;">OUR <span style="color: red;">SERVICES</span></h1>
+         <div class="services-container">
+            <div class="service-card">
+               <h3>Strength Training</h3>
+               <p>Build muscle and increase power using professional strength equipment.</p>
+            </div>
+            <div class="service-card">
+               <h3>Personal Training</h3>
+               <p>Get one-on-one coaching from certified trainers for faster results.</p>
+            </div>
+            <div class="service-card">
+               <h3>Cardio Fitness</h3>
+               <p>Improve endurance with modern cardio machines and programs.</p>
+            </div>
+            <div class="service-card">
+               <h3>Group Workouts</h3>
+               <p>Stay motivated with high-energy group training sessions.</p>
+            </div>
+            <div class="service-card">
+               <h3>Weight Loss Programs</h3>
+               <p>Structured plans designed to burn fat and transform your body.</p>
+            </div>
+            <div class="service-card">
+               <h3>Functional Training</h3>
+               <p>Improve mobility, balance, and strength with functional workout programs.</p>
+            </div>
+            <div class="service-card">
+               <h3>HIIT Workouts</h3>
+               <p>High-Intensity Interval Training sessions designed to burn fat and boost stamina.</p>
+            </div>
+            <div class="service-card">
+               <h3>Nutrition Guidance</h3>
+               <p>Expert nutrition advice to support muscle growth and recovery.</p>
+            </div>
+         </div>
+      </section>
+      <section id="ourteam">
+         <h1 class="team-title">OUR TRAINERS</h1>
+<div class="trainer-slider">
+   <div class="trainer-track">
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Strength Coach</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Bodybuilding Trainer</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Fitness Coach</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Nutrition Specialist</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Nutrition Specialist</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Nutrition Specialist</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Nutrition Specialist</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Nutrition Specialist</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Nutrition Specialist</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Strength Coach</p>
+      </div>
+      <div class="trainer-card">
+         <img alt="" src="images/Ravi.jpeg">
+         <h3>Ravi Upparatti</h3>
+         <p>Bodybuilding Trainer</p>
+      </div>
+   </div>
+</div>
+</section>
+<section id="contact">
+<h1 class="contact-title">CONTACT US</h1>
+<div class="contact-container">
+<div class="contact-info">
+<h3>Iron Fitness Gym</h3>
+<p> Location</p>
+<p>📞 123456789 </p>
+<p>✉ ironfitness@gmail.com</p>
+</div>
+<div class="contact-form">
+<form>
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea placeholder="Your Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+
+<div class="footer-container">
+
+<div class="footer-about">
+<h2>IRON FITNESS</h2>
+<p>Build strength, discipline and confidence. 
+Join Iron Fitness and transform your body and mindset.</p>
+</div>
+
+
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#ourteam">Our Team</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+
+
+<div class="footer-contact">
+<h3>Contact</h3>
+<p>( Location )</p>
+<p>📞 +91 9876543210</p>
+<p>✉ ironfitness@gmail.com</p>
+</div>
+<div class="footer-social">
+<h3>Follow Us</h3>
+<div class="social-icons">
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Iron Fitness. All Rights Reserved.</p>
+<p style="font-weight: 50; font-size: medium;">Designed and developed by SharanIlkal</p>
+</div>
+</footer>
+   </body>
+</html>

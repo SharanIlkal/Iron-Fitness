@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Protein Calculator</title>
+      <style>
+         *{
+         margin:0;
+         padding:0;
+         box-sizing:border-box;
+         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+         }
+         body{
+         height:100vh;
+         display:flex;
+         justify-content:center;
+         align-items:center;
+         background:linear-gradient(to right,#000000,#1a1a1a,#1b1a1a);
+         color:white;
+         }
+
+         .card{
+         width:320px;
+         padding:40px;
+         background:#0a0a0a;
+         border-radius:12px;
+         text-align:center;
+         }
+
+         h2{
+            font-weight: 200;
+         }
+
+         input,select{
+         width:100%;
+         padding:12px;
+         margin:10px 0;
+         border:none;
+         border-radius:6px;
+         background:#111;
+         color:white;
+         outline:none;
+         }
+
+         button{
+         width:100%;
+         padding:12px;
+         margin-top:10px;
+         border:none;
+         border-radius:6px;
+         background:#ffffff;
+         font-size:16px;
+         cursor:pointer;
+         transition:0.3s;
+         }
+
+         button:hover{
+         transform:scale(1.05);
+         box-shadow:
+         0 0 10px #ffffff;
+         }
+
+         .result{
+         margin-top:20px;
+         font-size:22px;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="card">
+         <h2>PROTEIN <span style="color: red;">INTAKE</span></h2>
+         <input type="number" id="weight" placeholder="Weight (kg)">
+         <select  id="goal">
+            <option value="1.2">Maintenance</option>
+            <option value="1.6">Muscle Gain</option>
+            <option value="2.0">Fat Loss</option>
+         </select>
+         <button onclick="calculateProtein()">CALCULATE</button>
+         <div class="result" id="result"></div>
+      </div>
+      <script>
+         function calculateProtein(){
+         let weight=document.getElementById("weight").value;
+         let goal=document.getElementById("goal").value;
+         let protein=(weight*goal).toFixed(0);
+         document.getElementById("result").innerHTML=
+         "Daily Protein : "+protein+" g";
+         }
+         
+      </script>
+   </body>
+</html>
