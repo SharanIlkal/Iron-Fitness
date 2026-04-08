@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Dashboard</title>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #000000, #000);
+    color: white;
+    padding: 20px;
+}
+
+
+h1{
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    /* text-shadow: 0 0 10px rgb(255, 255, 255); */
+}
+
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+button {
+    background: linear-gradient(45deg, rgb(0, 0, 0), rgb(0, 0, 0));
+    border: 2px solid #2e2e2ebf;
+    color: white;
+    padding: 8px 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+    transform: scale(1.05);
+    border-color: rgb(255, 255, 255);
+}
+
+
+#search {
+    padding: 8px 12px;
+    background: #000;
+    border: 2px solid #2e2e2ebf;
+    border-radius: 6px;
+    color: rgb(255, 255, 255);
+    outline: none;
+}
+
+#search:focus {
+    border-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0,0,0,0.85);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 3px rgb(255, 255, 255);
+}
+
+thead {
+    background: #000000;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ffffff;
+    font-size: 14px;
+}
+
+th {
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+td button {
+    margin: 2px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+
+td:nth-child(11) {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Customer Dashboard</h1>
+<div style="margin-bottom:10px;">
+    <button onclick="location.href='add.html'">Add Customer</button>
+    <button onclick="logout()">Logout</button>
+    <input type="text" id="search" placeholder="Search by name/contact" onkeyup="filterTable()">
+</div>
+<table border="1" width="100%">
+    <thead>
+    <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Aadhar</th>
+        <th>Plan (Months)</th>
+        <th>Amount</th>
+        <th>Joined Date</th>
+        <th>Expiry Date</th>
+        <th>Days Left</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="data"></tbody>
+</table>
+
+<script>
+    fetch("/customers")
+        .then(res => res.json())
+        .then(list => {
+            const tbody = document.getElementById("data");
+            tbody.innerHTML = "";
+
+            list.forEach((c, i) => {
+                const join = new Date(c.joinDate);
+                const expiry = new Date(c.expiryDate);
+                const today = new Date();
+
+                const daysLeft = Math.max(
+                    Math.ceil((expiry - today) / (1000 * 60 * 60 * 24)),
+                    0
+                );
+
+                const row = `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${c.name}</td>
+                        <td>${c.contact}</td>
+                        <td>${c.email}</td>
+                        <td>${c.age}</td>
+                        <td>${c.aadhar}</td>
+                        <td>${c.plan}</td>
+                        <td>₹${c.amount}</td>
+                        <td>${c.joinDate}</td>
+                        <td>${c.expiryDate}</td>
+                        <td>${daysLeft}</td>
+                        <td>
+                            <button onclick="edit(${c.id})">Edit</button>
+                            <button onclick="del(${c.id})">Delete</button>
+                            <button onclick="invoice(${c.id}, '${c.name}')">Invoice</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        });
+
+    function del(id) {
+        if (!confirm("Delete this customer?")) return;
+
+        fetch(`/customers/${id}`, { method: "DELETE" })
+            .then(() => location.reload());
+    }
+
+    function edit(id) {
+        location.href = `update.html?id=${id}`;
+    }
+
+    function invoice(id, name) {
+        window.open(`/invoice/${id}?name=${name}`, "_blank");
+    }
+
+    function logout() {
+        document.cookie = "token=; Max-Age=0";
+        location.href = "index.html";
+    }
+
+    function filterTable() {
+        const value = document.getElementById("search").value.toLowerCase();
+        const rows = document.querySelectorAll("#data tr");
+
+        rows.forEach(row => {
+            row.style.display = row.innerText.toLowerCase().includes(value)
+                ? ""
+                : "none";
+        });
+    }
+</script>
+
+</body>
+</html>

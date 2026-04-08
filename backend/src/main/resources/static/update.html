@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+        background: radial-gradient(circle at top, #000000, #000);
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 60px;
+    }
+
+
+    h1 {
+        color: #ffffff;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+        text-shadow: 0 0 0px rgb(255, 255, 255);
+    }
+
+
+    form {
+        background: rgba(0, 0, 0, 0.9);
+        padding: 35px;
+        border-radius: 14px;
+        width: 360px;
+        box-shadow: 0 0 15px rgb(255, 255, 255);
+        border: 1px solid #000000;
+        animation: fadeIn 0.6s ease;
+    }
+
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        background: #000;
+        border: 2px solid #444;
+        border-radius: 6px;
+        color: white;
+        outline: none;
+        transition: 0.3s;
+    }
+
+    input::placeholder {
+        color: #888;
+    }
+
+    input:focus {
+        border-color: rgb(255, 255, 255);
+        box-shadow: 0 0 10px rgb(255, 255, 255);
+    }
+
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background: linear-gradient(45deg, #000000, rgb(0, 0, 0));
+        border: 1pt solid white;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-transform: uppercase;
+    }
+
+    button:hover {
+        box-shadow: 0 0 15px rgb(255, 255, 255);
+        transform: scale(1.05);
+    }
+
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    </style>
+</head>
+<body>
+
+<h1>Update Customer</h1>
+
+<form id="f">
+    <input id="name" placeholder="Name"><br>
+    <input id="contact" placeholder="Contact"><br>
+    <input id="email" placeholder="Email"><br>
+    <input id="age" placeholder="Age"><br>
+    <input id="aadhar" placeholder="Aadhar"><br>
+    <input id="plan" placeholder="Plan"><br>
+    <input id="amount" placeholder="Amount"><br>
+    <button type="submit">Update</button>
+</form>
+
+<script>
+    const id = new URLSearchParams(location.search).get("id");
+
+    // Load existing data
+    fetch(`/customers/${id}`)
+      .then(r => r.json())
+      .then(c => {
+        document.getElementById("name").value = c.name;
+        document.getElementById("contact").value = c.contact;
+        document.getElementById("email").value = c.email;
+        document.getElementById("age").value = c.age;
+        document.getElementById("aadhar").value = c.aadhar;
+        document.getElementById("plan").value = c.plan;
+        document.getElementById("amount").value = c.amount;
+      });
+
+    // Submit update
+    document.getElementById("f").onsubmit = async e => {
+      e.preventDefault();
+
+      const payload = {
+        name: document.getElementById("name").value,
+        contact: document.getElementById("contact").value,
+        email: document.getElementById("email").value,
+        age: document.getElementById("age").value,
+        aadhar: document.getElementById("aadhar").value,
+        plan: document.getElementById("plan").value,
+        amount: document.getElementById("amount").value
+      };
+
+      console.log("Sending:", payload);  // IMPORTANT
+
+      await fetch(`/customers/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      location.href = "dashboard.html";
+    };
+</script>
+
+</body>
+</html>

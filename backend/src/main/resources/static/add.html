@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #000000, #000000);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+}
+
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 0px rgb(255, 255, 255);
+}
+
+
+form {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 35px;
+    border-radius: 12px;
+    width: 380px;
+    box-shadow: 0 0 15px rgb(255, 255, 255);
+    border: 1px solid #ffffff;
+    animation: fadeIn 0.6s ease;
+}
+
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background: #000;
+    border:  2px solid #444;;
+    border-radius: 6px;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+input::placeholder {
+    color: #888;
+}
+
+select {
+    color: #ccc;
+}
+
+input:focus, select:focus {
+    border-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: linear-gradient(45deg, #000000, rgb(0, 0, 0));
+    border: 1pt solid white;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+    transform: scale(1.05);
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+    </style>
+</head>
+<body>
+
+<h1>Add Customer</h1>
+
+<form id="addForm">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="contact" placeholder="Contact" required>
+    <input type="email" name="email" placeholder="Email">
+    <input type="number" name="age" placeholder="Age">
+    <input type="text" name="aadhar" placeholder="Aadhar Number">
+
+
+    <select name="plan" required>
+        <option value="">Select Plan (Months)</option>
+        <option value="1">1 Month</option>
+        <option value="2">2 Months</option>
+        <option value="3">3 Months</option>
+        <option value="4">4 Months</option>
+        <option value="5">5 Months</option>
+        <option value="6">6 Months</option>
+        <option value="12">12 Months</option>
+    </select>
+
+    <input type="number" name="amount" placeholder="Amount">
+
+    <button type="submit">Add</button>
+</form>
+
+<script>
+    document.getElementById("addForm").onsubmit = async function(e) {
+        e.preventDefault();
+
+        const data = Object.fromEntries(new FormData(this).entries());
+
+        await fetch("/customers", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        window.location.href = "dashboard.html";
+    };
+</script>
+
+</body>
+</html>
